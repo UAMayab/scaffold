@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187857973679",
+    "project_id": "mayandoc-167fd",
+    "storage_bucket": "mayandoc-167fd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187857973679:android:ceb5ff29fc6f57168cbf5a",
+        "android_client_info": {
+          "package_name": "org.guirao.scaffold"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvAe1dQWN3fTd3tTDd9qymJpd2TAoUJt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

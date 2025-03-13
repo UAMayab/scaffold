@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
@@ -38,7 +39,10 @@ import org.guirao.scaffold.ui.theme.ScaffoldTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
 import kotlin.Int
+
 
 
 class MainActivity : ComponentActivity() {
@@ -115,6 +119,28 @@ private fun MainActivity.TopBar() {
 
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
+    // Access a Firestore instance from your Activity
+    val db = Firebase.firestore
+    var TAG:String = "Mayan Doctor"
+
+    // Create a new user with a first and last name
+    val user = hashMapOf(
+        "first" to "Ada",
+        "last" to "Lovelace",
+        "born" to 1815,
+    )
+
+// Add a new document with a generated ID
+    db.collection("users")
+        .add(user)
+        .addOnSuccessListener { documentReference ->
+            Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+        }
+        .addOnFailureListener { e ->
+            Log.w(TAG, "Error adding document", e)
+        }
+
+
     var email: String by remember { mutableStateOf("") }
     var password: String by remember { mutableStateOf("") }
     Log.d("Mayan Doctor", "email: $email")
@@ -128,7 +154,7 @@ fun Greeting(modifier: Modifier = Modifier) {
             value = email,
             onValueChange = {email = it},
             label = { Text("Email") },
-            leadingIcon = { Icon(Icons.Default.Email, contentDescription = "Email") }
+            leadingIcon = { Icon(Icons.Default.Info, contentDescription = "Email") }
         );
 
         Spacer(modifier = Modifier.padding(10.dp))
